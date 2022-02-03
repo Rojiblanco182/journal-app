@@ -10,7 +10,7 @@
 
         <div class="entry-scrollarea">
             <h2
-                v-for="item in 100"
+                v-for="item in getEntriesByTerm"
                 :key="item"
             >
                 <Entry />
@@ -21,9 +21,13 @@
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import { mapGetters } from 'vuex'
 export default {
     components: {
         Entry: defineAsyncComponent(() => import(/* webpackChunkName: "Entry" */ '@/modules/daybook/components/Entry.vue'))
+    },
+    computed: {
+        ...mapGetters('journal', ['getEntriesByTerm'])
     }
 }
 </script>
