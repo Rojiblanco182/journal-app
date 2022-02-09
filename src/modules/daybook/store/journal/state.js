@@ -10,13 +10,13 @@ export default () => ({
         {
             id: '2',
             date: new Date().toDateString(),
-            text: 'gdfbhjabhjasbfasbdskjbgkjsgbndklsgbndklsgbndklgbdklsbgdklsbgldsgbndkls sdkgndklgndklsgndsklgndsklgndskl gdsklngkldsngkdlsngdklsgndklsng dskgndklsgndsklgnsdl',
+            text: 'gdfbhjabhjasbfasbdskjbgkjsgbndklsgbndklsgbndklgbdklsbgdklsbgldsgbndkls',
             picture: null
         },
         {
             id: '3',
             date: new Date().toDateString(),
-            text: 'gdfbhjabhjasbfasbdskjbgkjsgbndklsgbndklsgbndklgbdklsbgdklsbgldsgbndkls sdkgndklgndklsgndsklgndsklgndskl gdsklngkldsngkdlsngdklsgndklsng dskgndklsgndsklgnsdl',
+            text: 'gdfbhjabhjasbfasbdskjbgkjsgbndklsgbndklsgbndklgbdklsbgdklsbgldsgbndkls sdkgndklgndklsgndsklgndsklgndskl gdsklngkldsngkdlsngdklsgndklsng dskgndklsgndsklgnsdlvfdhfdhdfhdsfhdfjhgfjgfjgf',
             picture: null
         }
     ]
