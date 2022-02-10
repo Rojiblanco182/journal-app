@@ -34,7 +34,7 @@ export default {
         },
         day() {
             const date = new Date(this.entry.date)
-            return date.getDay()
+            return date.getDate()
         },
         month() {
             const date = new Date(this.entry.date)
