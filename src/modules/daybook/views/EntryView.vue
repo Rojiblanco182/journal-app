@@ -33,7 +33,7 @@
         class="img-thumbnail">
     </template>
 
-    <Fab icon="fa-save"/>
+    <Fab icon="fa-save" @on:click="saveEntry" />
 
 </template>
 
@@ -81,6 +81,10 @@ export default {
             }
 
             this.entry = entry
+        },
+
+        async saveEntry() {
+            console.log("guardando")
         }
     },
     created() {
