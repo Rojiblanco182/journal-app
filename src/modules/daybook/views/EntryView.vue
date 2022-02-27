@@ -8,7 +8,11 @@
             </div>
 
             <div>
-                <button class="btn btn-danger mx-2">
+                <button 
+                    v-if="entry.id"
+                    class="btn btn-danger mx-2" 
+                    @click="removeEntry"
+                >
                     Borrar
                     <i class="fa fa-trash-alt"></i>
                 </button>
@@ -40,6 +44,7 @@
 <script>
 import { defineAsyncComponent } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
+import Swal from 'sweetalert2'
 import getDayMonthYear from '@/modules/daybook/helpers/getDayMonthYear'
 
 export default {
@@ -73,7 +78,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions('journal', ['updateEntry', 'createEntry']),
+        ...mapActions('journal', ['updateEntry', 'createEntry', 'deleteEntry']),
 
         loadEntry() {
             let entry;
@@ -95,11 +100,41 @@ export default {
         },
 
         async saveEntry() {
+            new Swal({
+                title: 'Espere, por favor',
+                allowOutsideClick: false
+            })
+            Swal.showLoading()
+
             if (this.entry.id) {
                 await this.updateEntry(this.entry)
             } else {
                 const id = await this.createEntry(this.entry)
                 this.$router.push({ name: 'entry', params: { id } })
+            }
+
+            Swal.fire('Guardado', 'Entrada guardada correctamente', 'success')
+        },
+
+        async removeEntry() {
+            const result = await Swal.fire({
+                title: '¿Está seguro?',
+                text: 'Una vez borrado, no se puede recuperar',
+                showDenyButton: true,
+                confirmButtonText: 'Sí, estoy seguro'
+            })
+
+            if (result.isConfirmed) {
+                new Swal({
+                    title: 'Espere, por favor',
+                    allowOutsideClick: false
+                })
+                Swal.showLoading()
+
+                await this.deleteEntry(this.entry.id)
+                this.$router.push({ name: 'no-entry' })
+
+                Swal.fire('Eliminado', 'Entrada borrada correctamente', 'success')
             }
         }
     },
