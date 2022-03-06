@@ -8,6 +8,13 @@
             </div>
 
             <div>
+                <input 
+                    type="file" 
+                    @change="onSelectedImage"
+                    ref="imageSelector"
+                    v-show="false"
+                    accept="image/png, image/jpeg"
+                >
                 <button 
                     v-if="entry.id"
                     class="btn btn-danger mx-2" 
@@ -17,7 +24,7 @@
                     <i class="fa fa-trash-alt"></i>
                 </button>
 
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" @click="onSelectImage">
                     Subir foto
                     <i class="fa fa-upload"></i>
                 </button>
@@ -33,8 +40,18 @@
             ></textarea>
         </div>
         
-        <img src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-32716486/original/d188c280-a41c-462d-b357-243df1d96178.jpeg" alt="entry-picture"
-        class="img-thumbnail">
+        <img 
+            v-if="entry.picture && !localImage"
+            :src="entry.picture"
+            alt="entry-picture"
+            class="img-thumbnail"
+        >
+        <img 
+            v-if="localImage"
+            :src="localImage"
+            alt="entry-picture"
+            class="img-thumbnail"
+        >
     </template>
 
     <Fab icon="fa-save" @on:click="saveEntry" />
@@ -46,6 +63,7 @@ import { defineAsyncComponent } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 import Swal from 'sweetalert2'
 import getDayMonthYear from '@/modules/daybook/helpers/getDayMonthYear'
+import uploadImage from '@/modules/daybook/helpers/uploadImage'
 
 export default {
     props: {
@@ -59,7 +77,9 @@ export default {
     },
     data() {
         return {
-            entry: null
+            entry: null,
+            localImage: null,
+            file: null
         }
     },
     computed: {
@@ -105,6 +125,8 @@ export default {
                 allowOutsideClick: false
             })
             Swal.showLoading()
+            const imageUrl = await uploadImage(this.file)
+            this.entry.picture = imageUrl
 
             if (this.entry.id) {
                 await this.updateEntry(this.entry)
@@ -114,6 +136,7 @@ export default {
             }
 
             Swal.fire('Guardado', 'Entrada guardada correctamente', 'success')
+            this.file = null
         },
 
         async removeEntry() {
@@ -136,6 +159,25 @@ export default {
 
                 Swal.fire('Eliminado', 'Entrada borrada correctamente', 'success')
             }
+        },
+
+        onSelectedImage(event) {
+            const file = event.target.files[0]
+
+            if (!file) {
+                this.localImage = null
+                this.file = null
+                return
+            }
+
+            this.file = file
+            const fileReader = new FileReader()
+            fileReader.onload = () => this.localImage = fileReader.result
+            fileReader.readAsDataURL(file)
+        },
+
+        onSelectImage() {
+            this.$refs.imageSelector.click()
         }
     },
     created() {
