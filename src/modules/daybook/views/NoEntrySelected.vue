@@ -9,6 +9,7 @@
 import { defineAsyncComponent } from 'vue'
 
 export default {
+    name: 'NoEntrySelected',
     components: {
         Fab: defineAsyncComponent(() => import(/* webpackChunkName: "fab" */ '@/modules/daybook/components/Fab.vue'))
     },

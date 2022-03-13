@@ -66,6 +66,7 @@ import getDayMonthYear from '@/modules/daybook/helpers/getDayMonthYear'
 import uploadImage from '@/modules/daybook/helpers/uploadImage'
 
 export default {
+    name: 'EntryView',
     props: {
         id: {
             type: String,
