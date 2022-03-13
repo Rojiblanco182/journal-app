@@ -9,7 +9,7 @@ const uploadImage = async (file) => {
     const formData = new FormData()
     formData.append('upload_preset', 'vue-journal')
     formData.append('file', file)
-    const url = 'https://api.cloudinary.com/v1_1/dva56miee/image/upload'
+    const url = `https://api.cloudinary.com/v1_1/${ process.env.CLOUD_NAME }/image/upload`
 
     const { data } = await axios.post(url, formData)
 
