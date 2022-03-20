@@ -4,7 +4,7 @@ export const journalState = {
     {
       id: "MxV6RfF9aOfxuVOAbx1",
       date: 1646585019497,
-      text: "Otro día más aprendiendo"
+      text: "Otro día más aprendiendoooooooooooooo"
     },
     {
       id: "ABC123",
