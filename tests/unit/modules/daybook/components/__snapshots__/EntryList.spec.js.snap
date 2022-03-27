@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EntryList component should call getEntriesByTerm and list the existing entries 1`] = `
+<div class="entry-list-container">
+  <div class="px-2 pt-2"><input type="text" class="form-control" placeholder="Buscar entrada"></div>
+  <div class="mt-2 d-flex flex-column"><button class="btn btn-primary mx-3"><i class="fa fa-plus-circle"></i> Nueva Entrada </button></div>
+  <div class="entry-scrollarea">
+    <entry-stub entry="[object Object]"></entry-stub>
+    <entry-stub entry="[object Object]"></entry-stub>
+    <entry-stub entry="[object Object]"></entry-stub>
+  </div>
+</div>
+`;
+
+exports[`EntryList component should list the existing entries 1`] = `
+<div class="entry-list-container">
+  <div class="px-2 pt-2"><input type="text" class="form-control" placeholder="Buscar entrada"></div>
+  <div class="mt-2 d-flex flex-column"><button class="btn btn-primary mx-3"><i class="fa fa-plus-circle"></i> Nueva Entrada </button></div>
+  <div class="entry-scrollarea">
+    <entry-stub entry="[object Object]"></entry-stub>
+    <entry-stub entry="[object Object]"></entry-stub>
+    <entry-stub entry="[object Object]"></entry-stub>
+  </div>
+</div>
+`;

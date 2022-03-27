@@ -121,7 +121,7 @@ export default {
         },
 
         async saveEntry() {
-            new Swal({
+            Swal.fire({
                 title: 'Espere, por favor',
                 allowOutsideClick: false
             })
@@ -149,7 +149,7 @@ export default {
             })
 
             if (result.isConfirmed) {
-                new Swal({
+                Swal.fire({
                     title: 'Espere, por favor',
                     allowOutsideClick: false
                 })
