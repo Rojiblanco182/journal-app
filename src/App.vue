@@ -1,5 +1,5 @@
 <template>
-  <h2 v-if="authStatus === 'authenticating'">401</h2>
+  <h2 v-if="authStatus === 'authenticating'">Authenticating</h2>
   <router-view v-else />
 </template>
 
