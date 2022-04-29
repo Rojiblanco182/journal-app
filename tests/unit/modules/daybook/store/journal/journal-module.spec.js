@@ -2,6 +2,7 @@ import { createStore } from "vuex"
 import journalModule from "@/modules/daybook/store/journal"
 import { journalState } from "../../../../mock-data/journal-state"
 import journalApi from "@/api/journalApi"
+import authApi from "@/api/authApi"
 
 jest.mock('@/api/journalApi')
 
@@ -20,6 +21,17 @@ beforeEach(() => {
 })
 
 describe('Journal Module Store', () => {
+
+  beforeAll(async () => {
+    const { data } = await authApi.post(':signInWithPassword', {
+      email: 'test@test.com',
+      password: '123456',
+      returnSecureToken: true
+    })
+
+    localStorage.setItem('idToken', data.idToken)
+  })
+
   test('it should have the right initial state', () => {
     const mockStore = createVuexStore(journalState)
     const { isLoading, entries } = mockStore.state.journal
