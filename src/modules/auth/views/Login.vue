@@ -4,7 +4,7 @@
 	</span>
 	<form class="login100-form validate-form p-b-33 p-t-5" @submit.prevent="onSubmit">
 
-		<div class="wrap-input100 validate-input" data-validate = "Enter username">
+		<div class="wrap-input100 validate-input" data-validate = "Enter e-mail">
 			<input v-model="userForm.email" class="input100" type="text" placeholder="Correo" required>
 			<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 		</div>
