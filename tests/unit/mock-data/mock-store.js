@@ -6,11 +6,11 @@ import { journalState } from "./journal-state";
 const createVuexStore = ( authInitState, journalInitState = journalState ) =>
   createStore({
     modules: {
-      authModule: {
+      auth: {
         ...authModule,
         state: { ...authInitState }
       },
-      journalModule: {
+      journal: {
         ...journalModule,
         state: { ...journalInitState}
       }
